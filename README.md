@@ -6,11 +6,11 @@ DISCLAIMER: This repository exist with the aim of learning docker & docker-compo
 
 ## Using the project
 
-building image: `docker-compose build`
-start container: `docker-compose up -d`
-execute command in container: `docker-compose exec php php ../bin/console make:entity`
-ssh in container: `docker-compose exec php /bin/sh`
-stopping container: `docker-compose down`
+- building image: `docker-compose build`
+- start container: `docker-compose up -d`
+- execute command in container: `docker-compose exec php php ../bin/console make:entity`
+- ssh in container: `docker-compose exec php /bin/sh`
+- stopping container: `docker-compose down`
 
 ## TODO
 

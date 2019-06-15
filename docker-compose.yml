@@ -24,7 +24,7 @@ services:
             # use app folder as /var/www/
             - ./app:/var/www/
             # use nginx/default.conf as container nginx default conf
-            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
         depends_on:
             # will start php and mysql service before starting
             - php
@@ -43,8 +43,10 @@ services:
         environment:
             # define env variables (CHANGE IN PRODUCTION)
             MYSQL_ROOT_PASSWORD: root
+            # create user symfony-docker with same password
             MYSQL_USER: symfony-docker
             MYSQL_PASSWORD: symfony-docker
+            # define database
             MYSQL_DATABASE: symfony_docker
 
         # save database even when container is stopped

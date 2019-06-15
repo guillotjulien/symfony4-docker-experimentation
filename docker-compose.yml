@@ -1,0 +1,82 @@
+# Docker compose version
+version: '3'
+
+# define network name
+networks:
+    symfony:
+
+# keep database event when container is down
+volumes:
+    mariadb_data:
+        driver: local
+
+# images used for our app
+services:
+    nginx: 
+        # using alpine images because it's light 
+        image: nginx:stable-alpine
+        container_name: nginx
+        ports:
+            # map local port 8080 to container port 80
+            # TODO: change port
+            - '8080:80'
+        volumes:
+            # use app folder as /var/www/
+            - ./app:/var/www/
+            # use nginx/default.conf as container nginx default conf
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            # will start php and mysql service before starting
+            - php
+            - mariadb
+        networks: 
+            - symfony
+
+    mariadb:
+        image: mariadb
+        container_name: mariadb
+        restart: unless-stopped
+        tty: true
+        ports:
+            # TODO: change port
+            - '9090:3306'
+        environment:
+            # define env variables (CHANGE IN PRODUCTION)
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: symfony-docker
+            MYSQL_PASSWORD: symfony-docker
+            MYSQL_DATABASE: symfony_docker
+
+        # save database even when container is stopped
+        volumes:
+            - mariadb_data:/var/lib/mariadb
+        networks:
+            - symfony
+
+    php:
+        image: php:7.2-fpm-alpine
+        container_name: php
+        volumes:
+            - ./app:/var/www/
+        ports:
+            - '9091:9000'
+        environment:
+            PHP_MEMORY_LIMIT: 1G
+            # Symfony
+            APP_ENV: dev
+            APP_SECRET: 7d41a4acde33432b1d51eae15a301550
+            # mysql://db_user:db_password@127.0.0.1:3306/db_name
+            DATABASE_URL: mysql://root:root@mysql:3306/symfony_docker
+            MAILER_URL: null://localhost
+        networks:
+            - symfony
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin
+        ports:
+            - "9092:80"
+        networks:
+            - symfony
+        environment:
+            PMA_HOST: mariadb

@@ -8,14 +8,13 @@ DISCLAIMER: This repository exist with the aim of learning docker & docker-compo
 
 - building image: `docker-compose build`
 - start container: `docker-compose up -d`
-- execute command in container: `docker-compose exec php php ../bin/console make:entity`
+- execute command in container: `docker-compose exec php php bin/console make:entity`
 - ssh in container: `docker-compose exec php /bin/sh`
 - stopping container: `docker-compose down`
 
 ## TODO
 
 - Changing ports for security
-- solve issue with docker creating html folder inside of /var/www and using it as root directory
 
 ## Sources
 

@@ -21,8 +21,8 @@ services:
             # TODO: change port
             - '8080:80'
         volumes:
-            # use app folder as /var/www/
-            - ./app:/var/www/
+            # use app folder as /var/www
+            - ./app:/var/www
             # use nginx/default.conf as container nginx default conf
             - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
         depends_on:
@@ -59,7 +59,8 @@ services:
         image: php:7.2-fpm-alpine
         container_name: php
         volumes:
-            - ./app:/var/www/
+            - ./app:/var/www
+        working_dir: /var/www
         ports:
             - '9091:9000'
         environment:

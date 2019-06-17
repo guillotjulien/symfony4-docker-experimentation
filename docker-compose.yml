@@ -49,9 +49,10 @@ services:
             # define database
             MYSQL_DATABASE: symfony_docker
 
-        # save database even when container is stopped
+        # save database even when container is stopped and provide SQL if needed
         volumes:
             - mariadb_data:/var/lib/mariadb
+            - ./database:/docker-entrypoint-initdb.d
         networks:
             - symfony
 

@@ -2,7 +2,7 @@
 
 Experimenting with docker and symfony 4. While this is made for testing purposes, it can also be of some use for fellow developpers.
 
-DISCLAIMER: This repository exist with the aim of learning docker & docker-composer by practice. I'm not an expert, nor I'm able to provide extensive support. Keep in mind that it's always better to know how it work before using it as it can contain mistakes :).
+**DISCLAIMER**: This repository exist with the aim of learning docker & docker-composer by practice. I'm not an expert, nor I'm able to provide extensive support. Keep in mind that it's always better to know how it works before using it as it can contain mistakes :smile:.
 
 ## Using the project
 

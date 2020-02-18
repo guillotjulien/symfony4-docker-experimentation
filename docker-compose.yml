@@ -16,6 +16,7 @@ services:
         # using alpine images because it's light 
         image: nginx:stable-alpine
         container_name: nginx
+        restart: unless-stopped
         ports:
             # map local port 8080 to container port 80
             # TODO: change port
@@ -38,7 +39,6 @@ services:
         restart: unless-stopped
         tty: true
         ports:
-            # TODO: change port
             - '9090:3306'
         environment:
             # define env variables (CHANGE IN PRODUCTION)
@@ -59,6 +59,7 @@ services:
     php:
         image: php:7.2-fpm-alpine
         container_name: php
+        restart: unless-stopped
         volumes:
             - ./app:/var/www
         working_dir: /var/www
@@ -77,6 +78,7 @@ services:
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
+        restart: unless-stopped
         container_name: phpmyadmin
         ports:
             - "9092:80"

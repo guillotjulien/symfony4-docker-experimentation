@@ -14,7 +14,9 @@ DISCLAIMER: This repository exist with the aim of learning docker & docker-compo
 
 ## TODO
 
-- Changing ports for security
+[ ] Changing ports for security
+[ ] Go multistage!
+[ ] Add Makefile
 
 ## Sources
 

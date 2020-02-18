@@ -6,10 +6,11 @@ Experimenting with docker and symfony 4. While this is made for testing purposes
 
 ## Using the project
 
-- start container: `docker-compose up -d`
-- execute command in container: `docker-compose exec php php bin/console make:entity`
-- ssh in container: `docker-compose exec php /bin/sh`
-- stopping container: `docker-compose down`
+- start services: `make start`
+- execute command in php container: `docker-compose exec php php bin/console make:entity`
+- ssh in php container: `make ssh`
+- stopping services: `make stop`
+- cleanning services and volumes: `make clean`
 
 ## TODO
 
